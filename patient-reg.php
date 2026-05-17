@@ -7,7 +7,7 @@ $fullName = trim($_POST['fullName'] ?? '');
 $address  = trim($_POST['address']  ?? '');
 $city     = trim($_POST['city']     ?? '');
 $gender   = trim($_POST['gender']   ?? '');
-$email    = trim($_POST['email']    ?? '');
+$email    = htmlspecialchars(trim($_POST['email'])    ?? '');
 $password = trim($_POST['password'] ?? '');
 
 
