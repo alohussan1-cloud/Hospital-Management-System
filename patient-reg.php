@@ -20,13 +20,13 @@ $password = trim($_POST['password'] ?? '');
   
 
   if (empty($errors)) {
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
+    $password = password_hash($password, PASSWORD_DEFAULT);
     
     $sql = $conn->prepare("INSERT INTO patient(Name, Address, City, Gender, Email, Password) VALUES (?, ?, ?, ?, ?, ?)");
-    $sql->bind_param("ssssss", $fullName, $address, $city, $gender, $email, $hashed);
+    $sql->bind_param("ssssss", $fullName, $address, $city, $gender, $email, $password);
     
     if ($sql->execute()) {
-      echo "Data inserted successfully";
+      header("location: patient-log.php") ;
       } else {
         echo "Insertion failed";
         }
@@ -372,7 +372,7 @@ $password = trim($_POST['password'] ?? '');
     </div>
 
     <p class="section-label">Personal Details</p>
-    <form action="patient-reg.php" method="POST">
+    <form  method="POST">
         <div class="field-group">
             <div class="input-wrap">
                 <input type="text" id="fullName" name="fullName" placeholder="Full Name" autocomplete="name"/>

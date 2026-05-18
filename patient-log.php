@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql    = "SELECT * FROM patient WHERE Email = '$email'";
         $result = mysqli_query($conn, $sql);
 
-        if ($result && mysqli_num_rows($result) === 1) {
+        if ($result && mysqli_num_rows($result) >1) {
             $patient = mysqli_fetch_assoc($result);
 
             if (password_verify($password, $patient['Password'])) {
